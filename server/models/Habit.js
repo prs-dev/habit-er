@@ -2,7 +2,10 @@ const mongoose = require("mongoose")
 
 const HabitSchema = new mongoose.Schema({
     title: String,
-    frequency: "daily" | "weekly",
+    frequency: {
+        type: String,
+        enum: ["daily", "weekly"]
+    },
     createdAt: Date,
     user: {
         type: mongoose.Schema.Types.ObjectId,
