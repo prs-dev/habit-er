@@ -1,31 +1,16 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-// import { register } from '../services/api'
+import { register } from '../services/api'
 
 const Register = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const handleSubmit = async e => {
         e.preventDefault()
-        // console.log({
-        //     email, password
-        // })
-        // const response = register({
-        //     email,
-        //     password
-        // })
-        // console.log(response)
-        const res = await fetch('/api/auth/register', {
-            method: POST,
-            body: {
-                email, 
-                password
-            },
-            headers: {
-                "content-type": "application/json"
-            }
+        const data = await register({
+            email, password
         })
-        
+        console.log("test", data)
     }
   return (
     <div>
