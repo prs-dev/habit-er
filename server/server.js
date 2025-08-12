@@ -11,11 +11,11 @@ require('dotenv').config()
 const app = express()
 app.use(express.json())
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     res.send("<h1>Hello</h1>")
 })
 
-app.post("/auth/register", async (req, res) => {
+app.post("/api/auth/register", async (req, res) => {
     const { email, password } = req.body
     if (!email || !password) return res.status(400).json({ err: "Please provide all the fields!" })
     const salt = bcrypt.genSaltSync(12)
@@ -39,7 +39,7 @@ app.post("/auth/register", async (req, res) => {
     // })
 })
 
-app.post('/auth/login', async(req, res) => {
+app.post('/api/auth/login', async(req, res) => {
     const {email, password} = req.body
     if (!email || !password) return res.status(400).json({ err: "Please provide all the fields!" })
     const user = await User.findOne({email}).lean()
@@ -60,7 +60,7 @@ app.post('/auth/login', async(req, res) => {
     // })
 })
 
-app.get('/auth/user', tokenDecode, async(req, res) => {
+app.get('/api/auth/user', tokenDecode, async(req, res) => {
     // const {token} = req.body
     // if(!token) return res.status(400).json({err: "Token is invalid!"})
     // const validToken = jwt.verify(token, process.env.JWT_SECRET)
@@ -78,7 +78,7 @@ app.get('/auth/user', tokenDecode, async(req, res) => {
 })
 
 // hobits endpoints
-app.post("/habits/create", tokenDecode, async(req, res) => {
+app.post("/api/habits/create", tokenDecode, async(req, res) => {
     const {title, frequency, createdAt, logs} = req.body
     const userId = req._id
     if(!title || !frequency || !createdAt) return res.status(400).json({
@@ -101,7 +101,7 @@ app.post("/habits/create", tokenDecode, async(req, res) => {
     })
 })
 
-app.get("/habits/:id", async(req, res) => {
+app.get("/api/habits/:id", async(req, res) => {
     const habitId = req.params.id
     const habit = await Habit.findById(habitId)
     if(!habit) return res.status(400).json({
@@ -113,7 +113,7 @@ app.get("/habits/:id", async(req, res) => {
     })
 })
 
-app.put("/habits/update/:id", async(req, res) => {
+app.put("/api/habits/update/:id", async(req, res) => {
     const habitId = req.params.id
     const habit = await Habit.findByIdAndUpdate(habitId, req.body, {new:true})
     res.status(200).json({
@@ -122,7 +122,7 @@ app.put("/habits/update/:id", async(req, res) => {
     })
 })
 
-app.delete("/habits/delete/:id", tokenDecode, async(req, res) => {
+app.delete("/api/habits/delete/:id", tokenDecode, async(req, res) => {
     const habitId = req.params.id
     const userId = req._id
     const habit = await Habit.findByIdAndDelete(habitId, {new:true})
@@ -135,7 +135,7 @@ app.delete("/habits/delete/:id", tokenDecode, async(req, res) => {
     })
 })
 
-app.post("/habits/:id/log", async(req, res) => {
+app.post("/api/habits/:id/log", async(req, res) => {
     const {completed} = req.body
     const habitId = req.params.id
     const habit = await Habit.findById(habitId)
