@@ -1,15 +1,20 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import {login} from '../services/api'
+import { AuthContext } from '../context/AuthContext'
+import { useContext } from 'react'
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState("")
-    const handleSubmit = e => {
+    const {setToken} = useContext(AuthContext)
+    const handleSubmit = async e => {
         e.preventDefault()
-        console.log({
-            email,
-            password
+        const res = await login({
+            email, password
         })
+        setToken(res.token)
+        // console.log(res)
     }
   return (
     <div>
