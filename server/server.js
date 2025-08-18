@@ -69,7 +69,7 @@ app.get('/api/auth/user', tokenDecode, async(req, res) => {
     // console.log(_id)
     // console.log(req._id)
     const {_id} = req
-    const user = await User.findById(_id).select("-password")
+    const user = await User.findById(_id).select("-password").populate('habits')
     return res.status(200).json({
         msg: "User found",
         user
