@@ -1,0 +1,21 @@
+{
+  "name": "habit-er",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm run dev",
+    "server": "cd server && npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prs-dev/habit-er.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prs-dev/habit-er/issues"
+  },
+  "homepage": "https://github.com/prs-dev/habit-er#readme",
+  "description": ""
+}

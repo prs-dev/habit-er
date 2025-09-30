@@ -1,5 +1,6 @@
 import React from 'react'
 import HabitInput from '../components/HabitInput'
+import HabitList from '../components/HabitList'
 
 const Habits = () => {
   return (
@@ -10,6 +11,15 @@ const Habits = () => {
       <div>
         {/* input */}
         <HabitInput />
+      </div>
+      <div>
+        {/* cards */}
+        <HabitList />
+      </div>
+      <div>
+        {/* update habits */}
+        <HabitInput status={"update"}/> 
+        {/* add a selected in habit input for selecting habit */}
       </div>
     </div>
   )
