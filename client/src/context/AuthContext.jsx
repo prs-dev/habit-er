@@ -4,6 +4,7 @@ import { userDetails } from "../services/api";
 export const AuthContext = createContext({})
 
 export const AuthContextProvider = ({children}) => {
+    const [loading, setLoading] = useState(false)
     const [token, setToken] = useState(() => {
         const t = localStorage.getItem('token')
         if(t) {
@@ -38,9 +39,9 @@ export const AuthContextProvider = ({children}) => {
         if(token) {
             handler()
         }
-    }, [token])
+    }, [token, loading])
     console.log(token, user)
-    return <AuthContext.Provider value={{user, setToken, token}}>
+    return <AuthContext.Provider value={{user, setToken, token, setLoading, loading}}>
         {children}
     </AuthContext.Provider>
 }

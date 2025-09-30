@@ -5,12 +5,8 @@ const HabitList = () => {
   const {habits} = useHabits()
   console.log(habits)
   return (
-    <div>
-      <HabitCard />
-      <HabitCard />
-      <HabitCard />
-      <HabitCard />
-      <HabitCard />
+    <div style={{display: "flex", padding: "10px", gap: "10px"}}>
+      {habits?.map(habit => <HabitCard habit={habit} />)}
     </div>
   )
 }
