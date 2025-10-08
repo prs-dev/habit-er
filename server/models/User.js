@@ -14,7 +14,23 @@ const UserSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Habit"
         }
-    ]
+    ],
+    xp: {
+        type: Number,
+        default: 0
+    },
+    level: {
+        type: Number,
+        default:1
+    },
+    coins: {
+        type: Number,
+        default: 0
+    },
+    badges: [string],
+    streaks: {
+        [habitId]: Number
+    }
 })
 
 module.exports = mongoose.model("User", UserSchema)

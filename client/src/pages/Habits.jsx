@@ -4,22 +4,28 @@ import HabitList from '../components/HabitList'
 
 const Habits = () => {
   return (
-    <div>
-      <div>
-        <h1>Create New Habit</h1>
+    <div style={{
+    }}>
+      <div style={{display: "flex", gap: "20px"}}>
+        <div>
+        {/* input */}
+        <div>
+          <h1>Create New Habit</h1>
+        </div>
+        <HabitInput />
       </div>
       <div>
-        {/* input */}
-        <HabitInput />
+        {/* update habits */}
+        <div>
+          <h1>Update Habit</h1>
+        </div>
+        <HabitInput status={"update"} />
+        {/* add a selected in habit input for selecting habit */}
+      </div>
       </div>
       <div>
         {/* cards */}
         <HabitList />
-      </div>
-      <div>
-        {/* update habits */}
-        <HabitInput status={"update"}/> 
-        {/* add a selected in habit input for selecting habit */}
       </div>
     </div>
   )

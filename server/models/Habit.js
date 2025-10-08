@@ -16,7 +16,11 @@ const HabitSchema = new mongoose.Schema({
             date: Date,
             completed: Boolean
         }
-    ]
+    ],
+    difficulty: {type: Number, default: 1},
+    xpReward: {type: Number, default: 10},
+    streak: {type: Number, default: 0},
+    lastCompleted: Date
 })
 
 module.exports = mongoose.model("Habit", HabitSchema)
